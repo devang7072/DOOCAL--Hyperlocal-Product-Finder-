@@ -41,6 +41,14 @@ class CustomerProfileScreen extends StatelessWidget {
                     _buildProfileTile(Icons.location_on_outlined, 'My Addresses', 'Manage saved locations'),
                     _buildProfileTile(Icons.payment, 'Payment Methods', 'UPI, Cards, Wallets'),
                     _buildProfileTile(Icons.favorite_border, 'Favorites', 'Saved shops & services'),
+                    _buildProfileTile(
+                      Icons.storefront, 
+                      'Switch to Vendor Mode', 
+                      'Sell your products or services',
+                      onTap: () {
+                         Navigator.pushNamedAndRemoveUntil(context, Routes.roleSelection, (route) => false);
+                      },
+                    ),
                     _buildProfileTile(Icons.help_outline, 'Help & Support', 'FAQs, Contact us'),
                     
                     const SizedBox(height: 40),
@@ -61,10 +69,11 @@ class CustomerProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileTile(IconData icon, String title, String subtitle) {
+  Widget _buildProfileTile(IconData icon, String title, String subtitle, {VoidCallback? onTap}) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
       child: ListTile(
+        onTap: onTap,
         leading: Icon(icon, color: AppTheme.primary),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(subtitle, style: const TextStyle(fontSize: 12)),

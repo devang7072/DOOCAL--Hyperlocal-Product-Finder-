@@ -54,10 +54,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: _currentPage == 0
-                    ? [const Color(0xFFF3E5F5), const Color(0xFFE1BEE7)]
+                    ? [const Color(0xFFFFECEC), const Color(0xFFFFCDCD)] // Soft Red
                     : _currentPage == 1
-                        ? [const Color(0xFFE0F2F1), const Color(0xFFB2DFDB)]
-                        : [const Color(0xFFFFF3E0), const Color(0xFFFFE0B2)],
+                        ? [const Color(0xFFE0F7FF), const Color(0xFFB3EEFF)] // Soft Cyan
+                        : [const Color(0xFFF1FBEB), const Color(0xFFDAF2D0)], // Soft Green
               ),
             ),
           ),

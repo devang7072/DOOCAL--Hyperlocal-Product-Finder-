@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   // Brand Colors
-  static const Color primary = Color(0xFF6366F1); // Indigo
-  static const Color secondary = Color(0xFF10B981); // Emerald
-  static const Color accent = Color(0xFFF59E0B); // Amber
+  static const Color primary = Color(0xFFFF3131); // Vibrant Red from Logo
+  static const Color secondary = Color(0xFF00D1FF); // Vibrant Cyan from Logo
+  static const Color accent = Color(0xFF7ED957); // Green from Logo Pin
   
   // Neutral Colors
   static const Color background = Color(0xFFF8FAFC);

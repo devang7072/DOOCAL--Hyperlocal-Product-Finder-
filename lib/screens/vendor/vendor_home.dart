@@ -320,6 +320,13 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> with TickerProvider
                 },
               ),
               IconButton(
+                icon: const Icon(Icons.swap_horiz),
+                tooltip: 'Switch to Customer Mode',
+                onPressed: () {
+                   Navigator.pushNamedAndRemoveUntil(context, Routes.roleSelection, (route) => false);
+                },
+              ),
+              IconButton(
                 icon: const Icon(Icons.history),
                 tooltip: 'Accepted Jobs',
                 onPressed: () {

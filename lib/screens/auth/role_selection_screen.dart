@@ -25,13 +25,23 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
     
     if (mounted) {
       if (role == 'vendor') {
-        // Vendors go to Benefits Onboarding first (Zomato/Blinkit style)
-        Navigator.pushReplacementNamed(context, Routes.vendorOnboarding);
+        // Check if vendor has already completed setup
+        final user = auth.user;
+        if (user != null) {
+          final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+          final data = doc.data();
+          if (data != null && data['isSetupComplete'] == true) {
+            Navigator.pushNamedAndRemoveUntil(context, Routes.vendorHome, (route) => false);
+          } else {
+            // New or incomplete vendors go to Benefits Onboarding
+            Navigator.pushReplacementNamed(context, Routes.vendorOnboarding);
+          }
+        }
       } else {
         // Customers go straight to Home
         Navigator.pushNamedAndRemoveUntil(context, Routes.customerHome, (route) => false);
       }
-      setState(() => isSaving = false);
+      if (mounted) setState(() => isSaving = false);
     }
   }
 

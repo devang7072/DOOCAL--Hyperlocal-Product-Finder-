@@ -90,27 +90,9 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> checkUserAndNavigate(BuildContext context, User firebaseUser) async {
-    final docSnapshot = await _firestore.collection('users').doc(firebaseUser.uid).get();
-
-    if (docSnapshot.exists) {
-      // User exists, check role
-      final userData = docSnapshot.data()!;
-      final role = userData['role'];
-      
-      if (role == 'vendor') {
-         // Check if setup is complete
-         if (userData['isSetupComplete'] == true) {
-            Navigator.pushNamedAndRemoveUntil(context, Routes.vendorHome, (route) => false);
-         } else {
-            Navigator.pushNamedAndRemoveUntil(context, Routes.vendorSetup, (route) => false);
-         }
-      } else {
-         Navigator.pushNamedAndRemoveUntil(context, Routes.customerHome, (route) => false);
-      }
-    } else {
-      // New User -> Role Selection
-      Navigator.pushNamedAndRemoveUntil(context, Routes.roleSelection, (route) => false);
-    }
+    // To give users the choice every time they open the app, 
+    // we navigate to the Role Selection screen.
+    Navigator.pushNamedAndRemoveUntil(context, Routes.roleSelection, (route) => false);
   }
 
   Future<void> updateUserRole(BuildContext context, String role) async {
@@ -124,16 +106,16 @@ class AuthProvider with ChangeNotifier {
         'uid': user.uid,
         'phoneNumber': user.phoneNumber ?? '',
         'role': role,
-        'createdAt': FieldValue.serverTimestamp(),
+        'updatedAt': FieldValue.serverTimestamp(),
       }, SetOptions(merge: true));
 
       if (role == 'vendor') {
-         Fluttertoast.showToast(msg: "Vendor profile initialized!");
+         Fluttertoast.showToast(msg: "Vendor mode active");
       } else {
-         Navigator.pushNamedAndRemoveUntil(context, Routes.customerHome, (route) => false);
+         Fluttertoast.showToast(msg: "Customer mode active");
       }
     } catch (e) {
-      Fluttertoast.showToast(msg: "Error saving profile: $e");
+      Fluttertoast.showToast(msg: "Error saving preference: $e");
     }
   }
 }

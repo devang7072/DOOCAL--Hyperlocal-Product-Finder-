@@ -64,28 +64,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     FadeInSlide(
                       duration: const Duration(milliseconds: 800),
-                      child: Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.white24,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          Icons.location_on,
-                          size: 70,
-                          color: Colors.white,
+                      child: Hero(
+                        tag: 'app_logo',
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                          height: 120,
+                          fit: BoxFit.contain,
+                          // Optional: filter to make it look good on primary background
+                          // color: Colors.white, 
+                          // colorBlendMode: BlendMode.srcIn,
                         ),
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Text(
-                      'DOOCAL',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 4,
-                          ),
-                    ),
+                    // Keep the text or let the logo speak for itself
+                    // Text(
+                    //   'DOOCAL',
+                    //   style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    //         color: Colors.white,
+                    //         fontWeight: FontWeight.w900,
+                    //         letterSpacing: 4,
+                    //       ),
+                    // ),
                   ],
                 ),
               ),

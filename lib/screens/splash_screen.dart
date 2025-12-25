@@ -75,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
-          color: Color(0xFF0F0F0F), // Sleek black background
+          color: Colors.white, // Clean white background for the logo
         ),
         child: Stack(
           children: [
@@ -88,7 +88,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 height: 300,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Theme.of(context).primaryColor.withOpacity(0.05),
+                  color: Theme.of(context).primaryColor.withOpacity(0.03),
                 ),
               ),
             ),
@@ -104,62 +104,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // Luxury Logo Icon
-                          Container(
-                            padding: const EdgeInsets.all(24),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                colors: [
-                                  Theme.of(context).primaryColor,
-                                  Theme.of(context).primaryColor.withOpacity(0.7),
-                                ],
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).primaryColor.withOpacity(0.3),
-                                  blurRadius: 40,
-                                  spreadRadius: 5,
-                                ),
-                              ],
-                            ),
-                            child: const Icon(
-                              Icons.explore_rounded,
-                              size: 64,
-                              color: Colors.white,
+                          // Luxury Logo Image
+                          Hero(
+                            tag: 'app_logo',
+                            child: Image.asset(
+                              'assets/images/logo.png',
+                              width: 250,
+                              height: 250,
+                              fit: BoxFit.contain,
                             ),
                           ),
-                          const SizedBox(height: 32),
+                          const SizedBox(height: 16),
                           
-                          // Modern App Title
-                          const Text(
-                            'DOOCAL',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w900,
-                              letterSpacing: 8.0,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          
-                          // Minimalist Tagline
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white24, width: 0.5),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: const Text(
-                              'HYPERLOCAL DISCOVERY',
-                              style: TextStyle(
-                                color: Colors.white54,
-                                fontSize: 10,
-                                letterSpacing: 4.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
+                          // Minimalist Tagline removed as it's in the logo image or we can keep it
                         ],
                       ),
                     ),
@@ -177,19 +134,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 opacity: _opacityAnimation,
                 child: Column(
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       width: 24,
                       height: 24,
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white24),
+                        valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor.withOpacity(0.2)),
                       ),
                     ),
                     const SizedBox(height: 32),
                     Text(
                       'v1.0.0'.toUpperCase(),
-                      style: const TextStyle(
-                        color: Colors.white24,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor.withOpacity(0.2),
                         fontSize: 10,
                         letterSpacing: 2.0,
                         fontWeight: FontWeight.w600,
